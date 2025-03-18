@@ -46,7 +46,7 @@ def embed_text(text):
 text = "Hello, world!"
 text_embedding = embed_text(text)
 
-print("Embedding:", text_embedding)
+print("Embedding for text done")
 
 # Upsert the text into Pinecone
 index.upsert(
@@ -63,6 +63,8 @@ index.upsert(
 query = "Your query string goes here"
 query_embedding = embed_text(query)
 
+print("Embedding for query done")
+
 response = index.query(
     top_k=3,
     include_metadata=True,
@@ -70,6 +72,10 @@ response = index.query(
 )
 
 print("Response:", response)
+
+top_chunk = response["matches"][0]["metadata"]["text"]
+
+print("Top chunk:", top_chunk)
 
 # Simple test function
 def test():

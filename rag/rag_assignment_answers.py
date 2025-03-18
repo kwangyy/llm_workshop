@@ -77,10 +77,9 @@ response = index.query(
     include_metadata=True
 )
 
-# Display retrieved results
-print("\nRetrieved Chunks:")
-for match in response["matches"]:
-    print(f"- Score: {match['score']:.4f} | Text: {match['metadata']['text'][:500]}...")  # Show first 100 characters
+top_chunk = response["matches"][0]["metadata"]["text"]
+
+print("Top chunk:", top_chunk)
 
 # Simple test function
 def test():
